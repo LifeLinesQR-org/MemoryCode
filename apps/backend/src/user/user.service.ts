@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { AuthMethod } from '@prisma/generated';
+import { AuthMethod } from '@prisma/client';
 import { hash } from 'argon2';
 
 import { PrismaService } from '@/prisma/prisma.service';

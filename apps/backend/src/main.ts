@@ -1,8 +1,8 @@
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
-import connectRedis from 'connect-redis';
-import * as cookieParser from 'cookie-parser';
+import cookieParser from 'cookie-parser';
+import { RedisStore } from 'connect-redis';
 import session from 'express-session';
 import IORedis from 'ioredis';
 
@@ -15,7 +15,6 @@ async function bootstrap() {
 
   const config = app.get(ConfigService);
   const redis = new IORedis(config.getOrThrow('REDIS_URI'));
-  const RedisStore = connectRedis(session);
 
   app.use(cookieParser(config.getOrThrow<string>('COOKIES_SECRET')));
 
