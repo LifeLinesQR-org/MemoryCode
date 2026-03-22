@@ -171,16 +171,14 @@ export class AuthService {
 
       req.session.save((err) => {
         if (err) {
+          console.error('Session save error:', err) // ← добавь это
           return reject(
-            new InternalServerErrorException(
-              'Не удалось сохранить сессию. Проверьте, правильно ли настроены параметры сессии.',
-            ),
+              new InternalServerErrorException(
+                  'Не удалось сохранить сессию...',
+              ),
           );
         }
-
-        resolve({
-          user,
-        });
+        resolve({ user });
       });
     });
   }

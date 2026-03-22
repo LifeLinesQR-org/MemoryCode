@@ -3,8 +3,8 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import cookieParser from 'cookie-parser';
 import { RedisStore } from 'connect-redis';
+import { createClient } from 'redis';
 import session from 'express-session';
-import IORedis from 'ioredis';
 
 import { AppModule } from './app.module';
 import { ms, StringValue } from './libs/common/utils/ms.util';
@@ -14,7 +14,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = app.get(ConfigService);
-  const redis = new IORedis(config.getOrThrow('REDIS_URI'));
+    const redis = createClient({
+        url: config.getOrThrow<string>('REDIS_URI'),
+    });
+    await redis.connect();
 
   app.use(cookieParser(config.getOrThrow<string>('COOKIES_SECRET')));
 
@@ -38,10 +41,10 @@ async function bootstrap() {
         secure: parseBoolean(config.getOrThrow<string>('SESSION_SECURE')),
         sameSite: 'lax',
       },
-      store: new RedisStore({
-        client: redis,
-        prefix: config.getOrThrow<string>('SESSION_FOLDER'),
-      }),
+        store: new RedisStore({
+            client: redis,
+            prefix: config.getOrThrow<string>('SESSION_FOLDER'),
+        }),
     }),
   );
 
