@@ -3,8 +3,11 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react'
 import Link from 'next/link'
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 import { useForm } from 'react-hook-form'
+
+import ReCAPTCHA from 'react-google-recaptcha'
+import { useTheme } from 'next-themes'
 
 import {
     Button,
@@ -20,32 +23,46 @@ import {
 import { useLoginMutation } from '../hooks'
 import { LoginSchema, type TypeLoginSchema } from '../schemes'
 import { NewAuthWrapper } from './index'
+import {toast} from "sonner";
 
 export function NewLoginForm() {
     const [showPassword, setShowPassword] = useState(false)
     const [isShowTwoFactor, setIsShowFactor] = useState(false)
+    const { resolvedTheme } = useTheme()
+    const [mounted, setMounted] = useState(false)
+    const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
     const form = useForm<TypeLoginSchema>({
         resolver: zodResolver(LoginSchema),
         defaultValues: {
             email: '',
-            password: ''
+            password: '',
+            code: ''
         }
     })
 
     const { login, isLoadingLogin } = useLoginMutation(setIsShowFactor)
 
     const onSubmit = (values: TypeLoginSchema) => {
-        login({ values, recaptcha: '' })
+        if (recaptchaValue) {
+            login({ values, recaptcha: recaptchaValue })
+        } else {
+            toast.error('Пожалуйста, завершите reCAPTCHA')
+        }
     }
 
     return (
         <NewAuthWrapper
-            heading='Welcome Back'
-            description='Sign in to access your memorials and preferences'
-            backButtonLabel="Don't have an account?"
+            heading='Войти'
+            activeTab='login'
+            backButtonLabel='Нет аккаунта?'
             backButtonHref='/auth/register'
-            backButtonLinkLabel='Sign up'
+            backButtonLinkLabel='Зарегистрироваться'
+            isShowSocial
         >
             <Form {...form}>
                 <form
@@ -78,7 +95,7 @@ export function NewLoginForm() {
                                 name='email'
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Account Name</FormLabel>
+                                        <FormLabel>Email</FormLabel>
                                         <FormControl>
                                             <div className='relative'>
                                                 <Mail className='absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground' />
@@ -134,6 +151,16 @@ export function NewLoginForm() {
                             />
                         </>
                     )}
+                    <div className='recaptcha-container mx-auto'>
+                        {mounted ? (
+                            <ReCAPTCHA
+                                key={resolvedTheme}
+                                sitekey={process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY as string}
+                                onChange={setRecaptchaValue}
+                                theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
+                            />
+                        ) : null}
+                    </div>
                     <Button
                         type='submit'
                         disabled={isLoadingLogin}

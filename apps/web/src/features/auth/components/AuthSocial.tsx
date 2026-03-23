@@ -27,25 +27,25 @@ export function AuthSocial() {
 
 	return (
 		<>
-			<div className='grid grid-cols-2 gap-6'>
-				<Button onClick={() => onClick('google')} variant='outline'>
-					<FaGoogle className='mr-2 size-4' />
-					Google
-				</Button>
-				<Button onClick={() => onClick('yandex')} variant='outline'>
-					<FaYandex className='mr-2 size-4' />
-					Яндекс
-				</Button>
-			</div>
-			<div className='relative mb-2 space-y-4'>
+			<div className='relative mb-4 h-5'>
 				<div className='absolute inset-0 flex items-center'>
 					<span className='w-full border-t' />
 				</div>
 				<div className='relative flex justify-center text-xs uppercase'>
-					<span className='bg-background px-2 text-muted-foreground'>
-						Или
-					</span>
+                <span className='bg-card px-2 text-muted-foreground'>
+                    или
+                </span>
 				</div>
+			</div>
+			<div className='grid grid-cols-2 gap-3 mb-2'>
+				<Button onClick={() => onClick('google')} variant='outline' className='gap-2'>
+					<FaGoogle className='size-4 text-red-500' />
+					Google
+				</Button>
+				<Button onClick={() => onClick('yandex')} variant='outline' className='gap-2'>
+					<FaYandex className='size-4 text-yellow-500' />
+					Яндекс
+				</Button>
 			</div>
 		</>
 	)

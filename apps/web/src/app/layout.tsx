@@ -11,12 +11,12 @@ export const metadata: Metadata = {
     template: '%s | Memory Code'
   },
   description:
-      '################' ////////////////////////////////////////////////////////
+      'MemoryCode'
 }
 
 export default function RootLayout({
-                                       children
-                                   }: Readonly<{
+   children
+}: Readonly<{
     children: React.ReactNode
 }>) {
     return (

@@ -29,7 +29,6 @@ async function bootstrap() {
 
   app.use(
     session({
-      // Настройки управления сессиями с использованием Redis
       secret: config.getOrThrow<string>('SESSION_SECRET'),
       name: config.getOrThrow<string>('SESSION_NAME'),
       resave: true,
@@ -49,7 +48,6 @@ async function bootstrap() {
   );
 
   app.enableCors({
-    // Настройки CORS для приложения
     origin: config.getOrThrow<string>('ALLOWED_ORIGIN'),
     credentials: true,
     exposedHeaders: ['set-cookie'],

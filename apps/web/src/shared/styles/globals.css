@@ -89,3 +89,20 @@ body {
   color: hsl(var(--foreground));
   font-family: var(--font-geist-sans), sans-serif;
 }
+
+.recaptcha-container > div {
+  overflow: hidden;
+  width: 298px;
+  height: 74px;
+}
+
+.recaptcha-container {
+  border: 2px solid rgba(71, 168, 62, 0.2);
+  border-radius: 10px;
+  width: fit-content;
+  overflow: hidden;
+}
+
+.recaptcha-container iframe {
+  margin: -1px 0 0 -2px;
+}
