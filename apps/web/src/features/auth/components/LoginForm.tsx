@@ -54,9 +54,9 @@ export function LoginForm() {
 
 	return (
 		<AuthWrapper
-			heading='Войти'
-			description='Чтобы войти на сайт введите ваш email и пароль'
-			backButtonLabel='Еще нет аккаунта? Регистрация'
+			heading='Welcome Back'
+			description='Sign in to acces your memorials and preferences'
+			backButtonLabel='Don’t have an account? Sign up'
 			backButtonHref='/auth/register'
 			isShowSocial
 		>
