@@ -33,6 +33,7 @@ export function NewLoginForm() {
     const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null)
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true)
     }, [])
 

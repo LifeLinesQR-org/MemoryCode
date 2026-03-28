@@ -1,23 +1,14 @@
-/**
- * Роли пользователя в системе.
- */
 export enum UserRole {
 	Regular = 'REGULAR',
 	Admin = 'ADMIN'
 }
 
-/**
- * Методы аутентификации.
- */
 export enum AuthMethod {
 	Credentials = 'CREDENTIALS',
 	Google = 'GOOGLE',
 	Yandex = 'YANDEX'
 }
 
-/**
- * Интерфейс для аккаунта пользователя.
- */
 export interface IAccount {
 	id: string
 	createdAt: Date
@@ -30,9 +21,6 @@ export interface IAccount {
 	userId: string
 }
 
-/**
- * Интерфейс для пользователя.
- */
 export interface IUser {
 	id: string
 	createdAt: Date

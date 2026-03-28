@@ -31,6 +31,7 @@ export function NewRegisterForm() {
     const [showPasswordRepeat, setShowPasswordRepeat] = useState(false)
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true)
     }, [])
 
@@ -61,6 +62,7 @@ export function NewRegisterForm() {
             backButtonLabel='Уже есть аккаунт?'
             backButtonHref='/auth/login'
             backButtonLinkLabel='Войти'
+            isShowSocial
         >
             <Form {...form}>
                 <form

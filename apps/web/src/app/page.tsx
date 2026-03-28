@@ -1,14 +1,10 @@
-import Link from 'next/link'
+import type { Metadata } from 'next'
+import Home from '@/features/components/Home'
 
-import { buttonVariants } from '@/shared/components/ui'
+export const metadata: Metadata = {
+    title: 'Home Page'
+}
 
 export default function HomePage() {
-    return (
-        <div className='space-y-5 text-center'>
-            <h1 className='text-4xl font-bold'>Главная страница</h1>
-            <Link href='/auth/login' className={buttonVariants()}>
-                Войти в аккаунт
-            </Link>
-        </div>
-    )
+    return <Home />
 }
