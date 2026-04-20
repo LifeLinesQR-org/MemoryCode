@@ -7,15 +7,21 @@ export const getMailerConfig = async (
   configService: ConfigService,
 ): Promise<MailerOptions> => ({
   transport: {
-    host: configService.getOrThrow<string>('MAIL_HOST'),
-    port: configService.getOrThrow<number>('MAIL_PORT'),
-    secure: !isDev(configService),
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    family: 4,
     auth: {
       user: configService.getOrThrow<string>('MAIL_LOGIN'),
       pass: configService.getOrThrow<string>('MAIL_PASSWORD'),
     },
+    tls: {
+      rejectUnauthorized: false,
+    },
+    debug: true,
+    logger: true,
   },
   defaults: {
-    from: `"TeaCoder Team" ${configService.getOrThrow<string>('MAIL_LOGIN')}`,
+    from: `"MemoryCode" ${configService.getOrThrow<string>('MAIL_LOGIN')}`,
   },
 });
