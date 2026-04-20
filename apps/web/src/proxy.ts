@@ -11,7 +11,7 @@ export default function proxy(request: NextRequest) {
 
     if (isAuthPage) {
         if (isValidSession) {
-            return NextResponse.redirect(new URL('/dashboard/settings', request.url))
+            return NextResponse.redirect(new URL('/', request.url))
         }
         return NextResponse.next()
     }

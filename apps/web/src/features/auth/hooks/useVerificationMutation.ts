@@ -4,9 +4,6 @@ import { toast } from 'sonner'
 
 import { verificationService } from '../services'
 
-/**
- * Хук для выполнения мутации подтверждения электронной почты.
- */
 export function useVerificationMutation() {
 	const router = useRouter()
 
@@ -16,7 +13,7 @@ export function useVerificationMutation() {
 			verificationService.newVerification(token),
 		onSuccess() {
 			toast.success('Почта успешно подтверждена')
-			router.push('/dashboard/settings')
+			router.push('/')
 		},
 		onError() {
 			router.push('/auth/login')

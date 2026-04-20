@@ -4,9 +4,11 @@ import { toastMessageHandler } from '@/shared/utils'
 
 import { TypeRegisterSchema } from '../schemes'
 import { authService } from '../services'
-import {redirect} from "next/navigation";
+import {redirect, useRouter} from "next/navigation";
 
 export function useRegisterMutation() {
+	const router = useRouter()
+
 	const { mutate: register, isPending: isLoadingRegister } = useMutation({
 		mutationKey: ['register user'],
 		mutationFn: ({
@@ -18,7 +20,7 @@ export function useRegisterMutation() {
 		}) => authService.register(values, recaptcha),
 		onSuccess(data: any) {
 			toastMessageHandler(data)
-			redirect('auth/login')
+			router.push('/auth/login')
 		},
 		onError(error) {
 			toastMessageHandler(error)

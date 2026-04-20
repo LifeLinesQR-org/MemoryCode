@@ -8,6 +8,10 @@ import {
     Sparkles,
     Smartphone,
     Zap,
+    Timer,
+    Clock,
+    Heart,
+    User
 } from 'lucide-react'
 
 import { Button } from '@/shared/components/ui'
@@ -16,29 +20,47 @@ import Header from '@/shared/components/ui/Header'
 export default function Home() {
     const features = [
         {
-            icon: Sparkles,
-            title: 'Удобный интерфейс',
+            icon: Clock,
+            title: 'Вечное хранение',
             description:
-                'Простой и чистый UI, который не отвлекает от главного.',
+                'Информация хранится бессрочно и доступна в любое время с любого устройства',
         },
         {
             icon: ShieldCheck,
             title: 'Безопасность',
             description:
-                'Надёжная авторизация, защита данных и удобный вход.',
+                'Только вы и авторизованные родственники можете редактировать информацию',
         },
         {
-            icon: Smartphone,
-            title: 'Адаптивность',
+            icon: Heart,
+            title: 'Личная история',
             description:
-                'Страница отлично выглядит на телефоне, планшете и десктопе.',
+                'Расскажите полную историю жизни, добавьте фотографии и важные моменты',
         },
         {
             icon: Zap,
-            title: 'Быстрая работа',
+            title: 'Простой доступ',
             description:
-                'Минимум лишнего, максимум скорости и плавности.',
+                'Достаточно отсканировать QR-код смартфоном - никаких приложений не требуется',
         },
+    ]
+
+    const howItWorks = [
+        {
+            icon: User,
+            title: 'Создайте профиль',
+            description: 'Зарегистрируйтесь и добавьте информацию о близком человеке: биографию, фотографии, памятные даты'
+        },
+        {
+            icon: ShieldCheck,
+            title: "Получите QR-код",
+            description: "Система автоматически сгенерирует уникальный QR-код, который можно разместить на надгробии"
+        },
+        {
+            icon: Heart,
+            title: "Сохраните память",
+            description: "Посетители смогут отсканировать код и узнать историю жизни, почтить память"
+        }
     ]
 
     const benefits = [
@@ -51,30 +73,26 @@ export default function Home() {
         <div className="min-h-screen bg-background text-foreground">
             <Header />
             <main>
-                <section className="mx-auto flex min-h-[calc(100vh-80px)] max-w-7xl items-center px-6 py-16 lg:px-8">
+                <section className="mx-auto flex min-h-[calc(100vh-70px)] max-w-7xl items-center px-6 py-16 lg:px-8">
                     <div className="grid w-full gap-12 lg:grid-cols-2 lg:items-center">
                         <div className="max-w-xl">
                             <div className="mb-4 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm text-muted-foreground">
                                 <CheckCircle2 className="size-4 text-green-500" />
-                                Готовая главная страница на Next.js
+                                MemoryCode
                             </div>
 
                             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                                Создавай быстрый и красивый фронт без лишней
-                                возни
+                                Сохраните память о близких навечно
                             </h1>
 
                             <p className="mt-6 text-lg text-muted-foreground">
-                                Это пример главной страницы в том же стиле,
-                                что и твоя форма логина: чистая верстка,
-                                аккуратные блоки и нормальная структура для
-                                проекта.
+                                Создайте цифровой мемориал с QR-кодом для надгробия. Позвольте людям узнать историю жизни ваших близких.
                             </p>
 
                             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                                 <Button asChild className="bg-green-500 text-white hover:bg-green-600">
                                     <Link href="/auth/login">
-                                        Начать работу
+                                        Начать бесплатно
                                         <ArrowRight className="ml-2 size-4" />
                                     </Link>
                                 </Button>
@@ -84,94 +102,94 @@ export default function Home() {
                                 </Button>
                             </div>
 
-                            <ul className="mt-8 grid gap-3 text-sm text-muted-foreground">
-                                {benefits.map((item) => (
-                                    <li key={item} className="flex items-center gap-2">
-                                        <CheckCircle2 className="size-4 text-green-500" />
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
+                            {/*<ul className="mt-8 grid gap-3 text-sm text-muted-foreground">*/}
+                            {/*    {benefits.map((item) => (*/}
+                            {/*        <li key={item} className="flex items-center gap-2">*/}
+                            {/*            <CheckCircle2 className="size-4 text-green-500" />*/}
+                            {/*            {item}*/}
+                            {/*        </li>*/}
+                            {/*    ))}*/}
+                            {/*</ul>*/}
                         </div>
 
-                        <div className="relative">
-                            <div className="rounded-3xl border bg-card p-6 shadow-sm">
-                                <div className="mb-4 flex items-center justify-between">
-                                    <span className="text-sm font-medium">
-                                        Панель проекта
-                                    </span>
-                                    <span className="rounded-full bg-green-500/10 px-3 py-1 text-xs font-medium text-green-600">
-                                        Online
-                                    </span>
-                                </div>
+                        {/*<div className="relative">*/}
+                        {/*    <div className="rounded-3xl border bg-card p-6 shadow-sm">*/}
+                        {/*        <div className="mb-4 flex items-center justify-between">*/}
+                        {/*            <span className="text-sm font-medium">*/}
+                        {/*                Панель проекта*/}
+                        {/*            </span>*/}
+                        {/*            <span className="rounded-full bg-green-500/10 px-3 py-1 text-xs font-medium text-green-600">*/}
+                        {/*                Online*/}
+                        {/*            </span>*/}
+                        {/*        </div>*/}
 
-                                <div className="grid gap-4">
-                                    <div className="rounded-2xl border p-4">
-                                        <p className="text-sm text-muted-foreground">
-                                            Авторизация
-                                        </p>
-                                        <p className="mt-1 text-lg font-semibold">
-                                            Email, пароль, 2FA, reCAPTCHA
-                                        </p>
-                                    </div>
+                        {/*        <div className="grid gap-4">*/}
+                        {/*            <div className="rounded-2xl border p-4">*/}
+                        {/*                <p className="text-sm text-muted-foreground">*/}
+                        {/*                    Авторизация*/}
+                        {/*                </p>*/}
+                        {/*                <p className="mt-1 text-lg font-semibold">*/}
+                        {/*                    Email, пароль, 2FA, reCAPTCHA*/}
+                        {/*                </p>*/}
+                        {/*            </div>*/}
 
-                                    <div className="grid gap-4 sm:grid-cols-2">
-                                        <div className="rounded-2xl border p-4">
-                                            <p className="text-sm text-muted-foreground">
-                                                Скорость
-                                            </p>
-                                            <p className="mt-1 text-2xl font-bold">
-                                                Fast
-                                            </p>
-                                        </div>
-                                        <div className="rounded-2xl border p-4">
-                                            <p className="text-sm text-muted-foreground">
-                                                UI
-                                            </p>
-                                            <p className="mt-1 text-2xl font-bold">
-                                                Clean
-                                            </p>
-                                        </div>
-                                    </div>
+                        {/*            <div className="grid gap-4 sm:grid-cols-2">*/}
+                        {/*                <div className="rounded-2xl border p-4">*/}
+                        {/*                    <p className="text-sm text-muted-foreground">*/}
+                        {/*                        Скорость*/}
+                        {/*                    </p>*/}
+                        {/*                    <p className="mt-1 text-2xl font-bold">*/}
+                        {/*                        Fast*/}
+                        {/*                    </p>*/}
+                        {/*                </div>*/}
+                        {/*                <div className="rounded-2xl border p-4">*/}
+                        {/*                    <p className="text-sm text-muted-foreground">*/}
+                        {/*                        UI*/}
+                        {/*                    </p>*/}
+                        {/*                    <p className="mt-1 text-2xl font-bold">*/}
+                        {/*                        Clean*/}
+                        {/*                    </p>*/}
+                        {/*                </div>*/}
+                        {/*            </div>*/}
 
-                                    <div className="rounded-2xl border p-4">
-                                        <p className="text-sm text-muted-foreground">
-                                            Что внутри
-                                        </p>
-                                        <div className="mt-3 grid gap-3">
-                                            {[
-                                                'Header и навигация',
-                                                'Hero-блок с CTA',
-                                                'Карточки преимуществ',
-                                                'Адаптивная сетка',
-                                            ].map((item) => (
-                                                <div
-                                                    key={item}
-                                                    className="flex items-center gap-2 text-sm"
-                                                >
-                                                    <CheckCircle2 className="size-4 text-green-500" />
-                                                    {item}
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {/*            <div className="rounded-2xl border p-4">*/}
+                        {/*                <p className="text-sm text-muted-foreground">*/}
+                        {/*                    Что внутри*/}
+                        {/*                </p>*/}
+                        {/*                <div className="mt-3 grid gap-3">*/}
+                        {/*                    {[*/}
+                        {/*                        'Header и навигация',*/}
+                        {/*                        'Hero-блок с CTA',*/}
+                        {/*                        'Карточки преимуществ',*/}
+                        {/*                        'Адаптивная сетка',*/}
+                        {/*                    ].map((item) => (*/}
+                        {/*                        <div*/}
+                        {/*                            key={item}*/}
+                        {/*                            className="flex items-center gap-2 text-sm"*/}
+                        {/*                        >*/}
+                        {/*                            <CheckCircle2 className="size-4 text-green-500" />*/}
+                        {/*                            {item}*/}
+                        {/*                        </div>*/}
+                        {/*                    ))}*/}
+                        {/*                </div>*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
                     </div>
                 </section>
 
-                <section id="features" className="border-t bg-muted/30">
-                    <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+                <section id="features" className="mx-auto max-w-7xl border-t bg-muted/30 rounded-4xl">
+                    <div className="mx-auto max-w-7xl px-6 py-18 lg:px-8">
                         <div className="max-w-2xl">
                             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                                Почему этот шаблон удобно брать за основу
+                                Преимущества сервиса
                             </h2>
-                            <p className="mt-4 text-muted-foreground">
-                                Он уже выглядит как нормальный продукт: есть
-                                структура, акценты и пространство для твоей
-                                логики.
-                            </p>
+                            {/*<p className="mt-4 text-muted-foreground">*/}
+                            {/*    Он уже выглядит как нормальный продукт: есть*/}
+                            {/*    структура, акценты и пространство для твоей*/}
+                            {/*    логики.*/}
+                            {/*</p>*/}
                         </div>
 
                         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
@@ -198,17 +216,44 @@ export default function Home() {
                     </div>
                 </section>
 
+                <section id="howItWorks" className="mx-auto max-w-7xl bg-muted/35 rounded-4xl my-20 pb-20">
+                    <div className="mx-auto max-w-7xl px-6 py-18 lg:px-8">
+                        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                            Как это работает?
+                        </h2>
+                    </div>
+                    <div className="mx-10 grid gap-6 md:grid-cols-3 xl:grid-cols-3">
+                        {howItWorks.map((howItWork) => {
+                            const Icon = howItWork.icon
+                            return (
+                                <div
+                                    key={howItWork.title}
+                                    className="rounded-2xl border bg-background p-6 shadow-sm"
+                                    >
+                                    <div className="mb-4 inline-flex rounded-xl bg-green-500/10 p-3 text-green-600">
+                                        <Icon className="size-5" />
+                                    </div>
+                                    <h3 className="text-lg font-semibold">
+                                        {howItWork.title}
+                                    </h3>
+                                    <p className="mt-2 text-sm text-muted-foreground">
+                                        {howItWork.description}
+                                    </p>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </section>
+
                 <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
                     <div className="rounded-3xl border bg-card px-6 py-10 shadow-sm sm:px-10">
                         <div className="grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-center">
                             <div>
                                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                                    Готов начать собирать свой проект?
+                                    Начните сохранять память сегодня
                                 </h2>
                                 <p className="mt-4 text-muted-foreground">
-                                    Дальше можно подключить API, добавить
-                                    авторизацию, личный кабинет и любую
-                                    бизнес-логику.
+                                    Создание мемориала займет всего несколько минут
                                 </p>
                             </div>
 
