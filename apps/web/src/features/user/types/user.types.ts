@@ -1,3 +1,5 @@
+import { IMemorial } from "@/features/memorial/types/memorial.types"
+
 export enum UserRole {
 	Regular = 'REGULAR',
 	Admin = 'ADMIN'
@@ -34,4 +36,5 @@ export interface IUser {
 	isTwoFactorEnabled: boolean
 	method: AuthMethod
 	accounts: IAccount[]
+	memorials: IMemorial[]
 }

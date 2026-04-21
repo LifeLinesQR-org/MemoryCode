@@ -8,9 +8,6 @@ import { toastMessageHandler } from '@/shared/utils'
 import type { TypeLoginSchema } from '../schemes'
 import { authService } from '../services'
 
-/**
- * Хук для выполнения мутации входа пользователя.
- */
 export function useLoginMutation(
 	setIsShowFactor: Dispatch<SetStateAction<boolean>>
 ) {

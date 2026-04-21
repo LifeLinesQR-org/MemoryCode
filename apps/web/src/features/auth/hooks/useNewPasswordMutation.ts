@@ -7,9 +7,6 @@ import { toastMessageHandler } from '@/shared/utils'
 import { TypeNewPasswordSchema } from '../schemes'
 import { passwordRecoveryService } from '../services'
 
-/**
- * Хук для выполнения мутации установки нового пароля.
- */
 export function useNewPasswordMutation() {
 	const router = useRouter()
 	const searchParams = useSearchParams()

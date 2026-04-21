@@ -63,9 +63,9 @@ export class UserService {
       include: {
         accounts: true,
       },
-    });
+    })
 
-    return user;
+    return user
   }
 
   public async update(userId: string, dto: UpdateUserDto) {

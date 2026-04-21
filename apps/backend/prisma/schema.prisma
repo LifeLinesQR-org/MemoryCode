@@ -24,6 +24,8 @@ model User {
 
   accounts Account[]
 
+  memorials Memorial[]
+
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
@@ -62,6 +64,35 @@ model Token {
   @@map("tokens")
 }
 
+model Memorial {
+  id String @id @default(uuid())
+
+  name       String
+  surname    String
+  middleName String?
+
+  bornDate  DateTime
+  deathDate DateTime?
+
+  isPublic Boolean @default(false)
+
+  title       String
+  description String?
+
+  views Int @default(0)
+
+  location String?
+
+  type MemorialType @default(PERSONAL)
+
+  createdAt DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  @@map("memorials")
+}
+
 enum UserRole {
   REGULAR
   ADMIN
@@ -77,4 +108,9 @@ enum TokenType {
   VERIFICATION
   TWO_FACTOR
   PASSWORD_RESET
+}
+
+enum MemorialType {
+  FAME
+  PERSONAL
 }

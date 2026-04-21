@@ -10,6 +10,7 @@ import { IS_DEV_ENV } from './libs/common/utils/is-dev.util';
 import { MailModule } from './libs/mail/mail.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
+import {MemorialModule} from "@/memorial/memorial.module";
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { UserModule } from './user/user.module';
     PrismaModule,
     AuthModule,
     UserModule,
+    MemorialModule,
     ProviderModule,
     MailModule,
     EmailConfirmationModule,
