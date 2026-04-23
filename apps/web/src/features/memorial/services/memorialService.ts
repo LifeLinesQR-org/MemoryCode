@@ -11,6 +11,17 @@ class MemorialService {
         const response = await api.get<IMemorial>(`memorials/${id}`)
         return response
     }
+
+    public async create(memorial: any) {
+        const response = await api.post<IMemorial>('memorials/create', memorial)
+        return response
+    }
+
+    public async edit(id: string, memorial: any) {
+        const response = await api.post<IMemorial>(`memorials/${id}/update`, memorial)
+        console.log("edit response: ", response)
+        return response
+    }
 }
 
 export const memorialService = new MemorialService()

@@ -11,6 +11,7 @@ import { MailModule } from './libs/mail/mail.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
 import {MemorialModule} from "@/memorial/memorial.module";
+import {DataInit} from "@/config/data.init";
 
 @Module({
   imports: [
@@ -28,5 +29,8 @@ import {MemorialModule} from "@/memorial/memorial.module";
     PasswordRecoveryModule,
     TwoFactorAuthModule,
   ],
+  providers: [
+      DataInit
+  ]
 })
 export class AppModule {}

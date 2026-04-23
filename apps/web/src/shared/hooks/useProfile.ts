@@ -6,11 +6,12 @@ export function useProfile() {
 	const { data: user, isLoading } = useQuery({
 		queryKey: ['profile'],
 		queryFn: () => userService.findProfile(),
+		staleTime: 5 * 60 * 1000,
+		gcTime: 10 * 60 * 1000,
+		retry: false,
 		refetchOnWindowFocus: true,
+		refetchOnMount: true
 	})
 
-	return {
-		user,
-		isLoading
-	}
+	return { user, isLoading }
 }

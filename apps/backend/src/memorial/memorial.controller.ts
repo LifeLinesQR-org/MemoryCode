@@ -3,6 +3,7 @@ import {MemorialService} from "@/memorial/memorial.service";
 import {Authorization} from "@/auth/decorators/auth.decorator";
 import {CreateMemorialDto} from "@/memorial/dto/create-memorial.dto";
 import {Authorized} from "@/auth/decorators/authorized.decorator";
+import {UpdateMemorialDto} from "@/memorial/dto/update-memorial.dto";
 
 @Controller("memorials")
 export class MemorialController {
@@ -11,14 +12,21 @@ export class MemorialController {
 
     @Authorization()
     @Get()
-    public async getPopularMemorials() {
-        return this.memorialService.findPopular()
+    public async getPopularMemorials(
+        @Authorized('id') userId: string,
+        @Authorized('role') userRole: string
+    ) {
+        return this.memorialService.findPopular(userId, userRole);
     }
 
     @Authorization()
     @Get('/:id')
-    public async findById(@Param('id') id: string) {
-        return this.memorialService.findById(id)
+    public async findById(
+        @Param('id') id: string,
+        @Authorized('id') userId: string,
+        @Authorized('role') userRole: string,
+    ) {
+        return this.memorialService.findById(id, userId, userRole);
     }
 
     @Authorization()
@@ -28,5 +36,15 @@ export class MemorialController {
         @Body() dto: CreateMemorialDto
     ) {
         return this.memorialService.create(userId, dto)
+    }
+
+    @Authorization()
+    @Post('/:id/update')
+    public async update(
+        @Param('id') id: string,
+        @Authorized('id') userId: string,
+        @Body() dto: UpdateMemorialDto
+    ) {
+        return this.memorialService.update(id, userId, dto)
     }
 }

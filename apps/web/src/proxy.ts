@@ -9,9 +9,13 @@ export default function proxy(request: NextRequest) {
 
     const isAuthPage = pathname.startsWith('/auth')
 
+    if (pathname === '/' && isValidSession) {
+        return NextResponse.redirect(new URL('/memorials', request.url))
+    }
+
     if (isAuthPage) {
         if (isValidSession) {
-            return NextResponse.redirect(new URL('/', request.url))
+            return NextResponse.redirect(new URL('/memorials', request.url))
         }
         return NextResponse.next()
     }
@@ -19,8 +23,10 @@ export default function proxy(request: NextRequest) {
     if (!isValidSession) {
         return NextResponse.redirect(new URL('/auth/login', request.url))
     }
+
+    return NextResponse.next()
 }
 
 export const config = {
-    matcher: ['/auth/:path*', '/dashboard/:path*']
+    matcher: ['/', '/memorials', '/auth/:path*', '/dashboard/:path*']
 }

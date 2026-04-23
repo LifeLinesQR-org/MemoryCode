@@ -2,7 +2,7 @@ import {IsBoolean, IsDate, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString} f
 import {Transform, Type} from "class-transformer";
 import { MemorialType } from "@prisma/client";
 
-export class CreateMemorialDto {
+export class UpdateMemorialDto {
 
     @IsString({message: 'Имя должно быть строкой.'})
     @IsNotEmpty({message: 'Имя обязательно для заполнения.'})
@@ -43,6 +43,7 @@ export class CreateMemorialDto {
     @IsString()
     location: string
 
+    @IsOptional()
     @IsEnum(MemorialType, { message: "Неверный тип мемориала" })
     type: MemorialType
 
